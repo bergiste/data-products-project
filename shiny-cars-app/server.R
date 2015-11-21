@@ -2,7 +2,6 @@ library(shiny)
 library(caret)
 data(mtcars)
 model <- train(mpg ~ wt + qsec + am, method='lm', data = mtcars)
-maxWt <- max(mtcars$wt)
 shinyServer(
     function(input, output){
         wt <- reactive({input$inWt})

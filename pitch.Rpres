@@ -1,0 +1,47 @@
+Developing Data Products Project
+========================================================
+author: Jose Bergiste
+date: November 2015
+
+Shiny Cars App
+========================================================
+
+I created the Shiny Cars App using R Studio and Shiny. The application can be seen at https://bergiste.shinyapps.io/shiny-cars-app
+
+The application predicts a user's car MPG (Miles Per Gallon) based on the following factors:
+
+- The weight of the car (wt)
+- The transmission of the car (am)
+- The 1/4 mile time of the car (qsec)
+
+Using The App
+========================================================
+Using the app is very simple:
+
+## On the Left Side:
+1. Enter the car's weight (in 1000 lbs increments) 
+2. Slide the slider to pick the car's 1/4 mile time
+3. Use the radio button to select if the car is automatic or manual
+
+## On the Right Side:
+
+You will see the estimated MPG of the car along with a pretty picture of a bunch of cars
+
+
+Data Used
+========================================================
+Here is a sample of the mtcars data-set used to make the prediction:
+```{r, echo=FALSE}
+data(mtcars)
+head(mtcars)
+```
+
+Prediction
+========================================================
+A multivariable linear regression model was used to predict the car's MPG. The 3 features (wt, qsec, and am) were selected based being the most predictive for determining MPG
+
+*Here is the code for the prediction below:*
+```{r, eval=FALSE}
+library(caret)
+model <- train(mpg ~ wt + qsec + am, method='lm', data = mtcars)
+```
